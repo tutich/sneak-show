@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Navbar from 'scenes/nav';
+import './index.css';
+import Carousel from 'scenes/carousel';
+import Details from 'scenes/details';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className=" flex flex-col app w-[90%] lg:w-[80%] items-center justify-center mx-auto">
+      <Navbar />
+      <div className=' flex flex-col lg:flex-row'>
+        <Carousel />
+        <Details />
+      </div>
     </div>
   );
 }
