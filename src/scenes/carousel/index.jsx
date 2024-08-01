@@ -124,7 +124,7 @@ const Carousel = () => {
 
   return (
     <section className="flex flex-col items-center">
-      <div className=" relative w-[300px] h-[300px] mb-4">
+      <div className=" relative w-[280px] h-[280px] lg:w-[400px] lg:h-[400px] mb-4">
         <img
           src={carouselImages[currentImage].image}
           alt={`Product ${carouselImages[currentImage].id}`}
@@ -146,7 +146,7 @@ const Carousel = () => {
         </button>
       </div>
 
-      <div className="w-[300px] lg:grid lg:grid-cols-4 gap-2 hidden">
+      <div className="w-[400px] lg:grid lg:grid-cols-4 gap-2 hidden">
         {carouselImages.map((img, index) => (
           <div
             key={img.id}

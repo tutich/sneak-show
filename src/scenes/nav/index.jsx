@@ -1,8 +1,11 @@
+import Card from "components/Card";
 import { navItems } from "constants";
 import React, { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ cartItems, removeFromCart, totalQuantity }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMouseOverCart, setIsMouseOverCart] = useState(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -10,6 +13,32 @@ const Navbar = () => {
 
   const handleLinkClick = () => {
     setIsOpen(false);
+  };
+
+  const handleMouseEnterCart = () => {
+    setIsCartOpen(true);
+    setIsMouseOverCart(true);
+  };
+
+  const handleMouseLeaveCart = () => {
+    setIsMouseOverCart(false);
+    setTimeout(() => {
+      if (!isMouseOverCart) {
+        setIsCartOpen(false);
+      }
+    }, 200);
+  };
+
+  const handleMouseEnterCartIcon = () => {
+    setIsCartOpen(true);
+  };
+
+  const handleMouseLeaveCartIcon = () => {
+    setTimeout(() => {
+      if (!isMouseOverCart) {
+        setIsCartOpen(false);
+      }
+    }, 200);
   };
 
   return (
@@ -36,8 +65,28 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="flex items-center lg:gap-8 gap-4 right-0">
-          <img src="/images/icon-cart.svg" alt="cart" />
+        <div className="flex items-center lg:gap-8 gap-4 right-0 relative">
+          <div
+            className="relative"
+            onMouseEnter={handleMouseEnterCartIcon}
+            onMouseLeave={handleMouseLeaveCartIcon}
+          >
+            <img src="/images/icon-cart.svg" alt="cart" className="cursor-pointer" />
+            {totalQuantity > 0 && (
+              <div className="absolute -top-2 -right-2 bg-orange-2 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {totalQuantity}
+              </div>
+            )}
+            {isCartOpen && (
+              <div
+                className="absolute top-4.5 -right-8 w-64 bg-white shadow-lg p-4 z-30 lg:right-0 sm:left-1/2 sm:transform sm:-translate-x-1/2"
+                onMouseEnter={handleMouseEnterCart}
+                onMouseLeave={handleMouseLeaveCart}
+              >
+                <Card cartItems={cartItems} removeFromCart={removeFromCart} />
+              </div>
+            )}
+          </div>
           <img
             src="/images/image-avatar.png"
             alt="avatar"
