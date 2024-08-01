@@ -1,0 +1,4 @@
+.hover-svg:hover path {
+    stroke: #ff6600; /* Tailwind's orange-2 equivalent */
+    fill: #ff6600;
+  }
