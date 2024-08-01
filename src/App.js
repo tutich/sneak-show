@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="app w-[90%] lg:w-[80%] items-center justify-center mx-auto">
       <Navbar />
-      <div className=' flex flex-col lg:flex-row'>
+      <div className=' flex flex-col lg:flex-row items-center justify-between'>
         <Carousel />
         <Details />
       </div>
